@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zx.rzb.sfxxrz.mybatis.mapper.MerchantQueryMapper">
+	<resultMap id="MerchantQuerymap" type="com.zx.rzb.sfxxrz.mybatis.entity.MerchantQuery">
+		<result property="id" 			column="ID" />
+		<result property="merchId" 		column="MERCH_ID" />
+		<result property="idNumber" 	column="ID_NUMBER" />
+		<result property="personName" 	column="PERSON_NAME" />
+		<result property="rzType" 		column="RZ_TYPE" />
+		<result property="rzResult" 	column="RZ_RESULT" />
+		<result property="rzFee" 		column="RZ_FEE" />
+		<result property="rzTime" 		column="RZ_TIME" />
+	</resultMap>
+	
+	<insert id="insertMerchantQuery" parameterType="MerchantQuery" >
+		insert into RZB_MERCHANT_QUERY(
+		MERCH_ID,ID_NUMBER,PERSON_NAME,RZ_TYPE,RZ_RESULT,RZ_FEE,RZ_TIME
+		)values(
+		#{merchId},#{idNumber},#{personName},#{rzType},#{rzResult},#{rzFee},#{rzTime}
+		)
+	</insert>
+
+</mapper>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zx.rzb.sfxxrz.mybatis.mapper.SfxxrzMapper">
+	<resultMap id="MerchantQuerymap" type="com.zx.rzb.sfxxrz.mybatis.entity.Sfxxrz">
+		<result property="idNumber" 	column="ID_NUMBER" />
+		<result property="personName" 	column="PERSON_NAME" />
+		<result property="formerName" 	column="FORMER_NAME" />
+		<result property="sex" 			column="SEX" />
+		<result property="nation" 		column="NATION" />
+		<result property="birthday" 	column="BIRTHDAY" />
+		<result property="company" 		column="COMPANY" />
+		<result property="education" 	column="EDUCATION" />
+		<result property="maritalStatus" column="MARITAL_STATUS" />
+		<result property="nativePlace" 	column="NATIVE_PLACE" />
+		<result property="birthPlace" 	column="BIRTH_PLACE" />
+		<result property="address" 		column="ADDRESS" />
+		<result property="rzResult" 	column="RZ_RESULT" />
+		<result property="rzTime" 		column="RZ_TIME" />
+	</resultMap>
+	
+	<select id="querySfxx" parameterType="map" resultMap="MerchantQuerymap">
+		select 
+		ID_NUMBER,PERSON_NAME,FORMER_NAME,SEX,NATION,BIRTHDAY,COMPANY,
+		EDUCATION,MARITAL_STATUS,NATIVE_PLACE,BIRTH_PLACE,ADDRESS,RZ_RESULT,RZ_TIME
+		from RZB_SFXX
+		where
+		ID_NUMBER=#{idNumber} 
+		and PERSON_NAME=#{personName}
+	</select>
+
+	<insert id="insertSfxxrz" parameterType="Sfxxrz" >
+		insert into RZB_SFXX(
+		ID_NUMBER,PERSON_NAME,FORMER_NAME,SEX,NATION,BIRTHDAY,COMPANY,
+		EDUCATION,MARITAL_STATUS,NATIVE_PLACE,BIRTH_PLACE,ADDRESS,RZ_RESULT,RZ_TIME
+		)values(
+		#{idNumber},#{personName},#{formerName},#{sex},#{nation},#{birthday},#{company},
+		#{education},#{maritalStatus},#{nativePlace},#{birthPlace},#{address},#{rzResult},#{rzTime}
+		)
+	</insert>
+	
+	<update id="updateSfxx" parameterType="Sfxxrz">
+		update RZB_SFXX	set 
+		FORMER_NAME=#{formerName}
+		,SEX=#{sex}
+		,NATION=#{nation}
+		,BIRTHDAY=#{birthday}
+		,COMPANY=#{company}
+		,EDUCATION=#{education}
+		,MARITAL_STATUS=#{maritalStatus}
+		,NATIVE_PLACE=#{nativePlace}
+		,BIRTH_PLACE=#{birthPlace}
+		,ADDRESS=#{address}
+		where
+		ID_NUMBER=#{idNumber} 
+		and PERSON_NAME=#{personName}
+	</update>
+	
+</mapper>

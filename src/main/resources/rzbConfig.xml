@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<configs>
+	<!-- 商户密钥配置 -->
+	<platform name="merchantKey">
+		<!-- 自测使用 -->
+		<config id="008310107420024" value="25E562C52DF0D352D920FA90482F3CB4F921668BE2B8D8AB8A0F44F123BABA77" />
+		<!-- 商户一 -->
+		<config id="001312107420025" value="FEFC7996FBA128076F8DCEEFE3CDDD4F11ADF7832F9FCA02A28C634B692E901A" />
+	</platform>
+	
+	<!-- 告警邮件配置 -->
+	<platform name="mail">
+		<config id="host" value="smtp.chanmaobank.com" />
+		<config id="user" value="postmaster@chanmaobank.com" />
+		<config id="pwd" value="Zj20160105" />
+		<config id="subject" value="挚尖-商户余额告警" />
+		<config id="cc" value="13921528881@139.com" />
+		<config id="template" value="%s    %s    贵账户余额为%s,请及时充值！" />
+	</platform>
+	
+	<!-- 渠道费用 -->
+	<platform name="channelFee">
+		<!-- 认证宝 -->
+		<config id="simpleCheck" value="0.80"	/>
+		<config id="exactCheck" value="1.20"	/>
+		<config id="faceCheck" value="2.50"	/>
+		<!-- 合一道 -->
+		<config id="idCardCheck" value="0.50"	/>
+		<config id="idCardPhotoInfoQuery" value="1.80" />
+		<config id="photoCompare" value="2.80" />
+	</platform>
+	
+	
+</configs>

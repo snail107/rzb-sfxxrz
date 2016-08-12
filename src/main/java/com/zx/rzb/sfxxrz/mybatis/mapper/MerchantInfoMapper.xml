@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zx.rzb.sfxxrz.mybatis.mapper.MerchantInfoMapper">
+	<resultMap id="MerchantInfomap" type="com.zx.rzb.sfxxrz.mybatis.entity.MerchantInfo">
+		<result property="merchId" 		column="MERCH_ID" />
+		<result property="merchName" 	column="MERCH_NAME" />
+		<result property="adress" 		column="ADDRESS" />
+		<result property="balance" 		column="BALANCE" />
+		<result property="updateTime" 	column="UPDATE_TIME" />
+		<result property="warning" 		column="WARNING" />
+		<result property="warningTime" 	column="WARNING_TIME" />
+		<result property="email" 		column="EMAIL" />
+	</resultMap>
+
+	<select id="queryAllMerchantInfo" resultMap="MerchantInfomap">
+		select 
+		MERCH_ID,MERCH_NAME,ADDRESS,BALANCE,UPDATE_TIME,WARNING,WARNING_TIME,EMAIL
+		from 
+		RZB_MERCHANT_INFO
+	</select>
+	
+	<select id="queryMerchantInfo" parameterType="String" resultMap="MerchantInfomap">
+		select 
+		MERCH_ID,MERCH_NAME,ADDRESS,BALANCE,UPDATE_TIME,WARNING,WARNING_TIME,EMAIL
+		from RZB_MERCHANT_INFO
+		where
+		MERCH_ID=#{0}
+	</select>
+	
+	<insert id="insertMerchantInfo" parameterType="MerchantInfo" >
+		insert into RZB_MERCHANT_INFO(
+		MERCH_ID,MERCH_NAME,ADDRESS,BALANCE,UPDATE_TIME,WARNING,WARNING_TIME,EMAIL
+		)values(
+		#{merchId},#{merchName},#{adress},#{balance},#{updateTime},#{warning},#{warningTime},#{email}
+		)
+	</insert>
+	
+	<update id="updateMerchantInfo" parameterType="map">
+		update RZB_MERCHANT_INFO set 
+		BALANCE=BALANCE-#{rzFee}
+		,UPDATE_TIME=#{updateTime}
+		<if test="warningTime != null and warningTime != '' ">
+			,WARNING_TIME=#{warningTime}
+		</if>
+		where
+		MERCH_ID=#{merchId} 
+	</update>
+
+</mapper>
