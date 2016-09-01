@@ -40,6 +40,35 @@ public interface SfxxrzService {
 	 */
 	public JSONObject photoCompare(String idNumber,String name,String photo,String merchantId)throws Exception;
 
+	
+	/**
+	 * @Title: bankCardCheckFourParts
+	 * @Description: TODO(合一道，个人银行账户核查(3项)接口)
+	 * @date 2016年8月17日 下午4:10:48 
+	 * @author yang-lj
+	 * @param idNumber
+	 * @param name
+	 * @param account
+	 * @param merchantId
+	 * @return
+	 * @throws Exception
+	 */
+	public JSONObject bankCardCheckThree(String idNumber,String name,String account,String merchantId)throws Exception;
+
+	/**
+	 * @Title: bankCardCheckFourParts
+	 * @Description: TODO(合一道，个人银行账户核查(4项)接口)
+	 * @date 2016年8月17日 下午4:10:48 
+	 * @author yang-lj
+	 * @param idNumber
+	 * @param name
+	 * @param account
+	 * @param merchantId
+	 * @return
+	 * @throws Exception
+	 */
+	public JSONObject bankCardCheckFourParts(String idNumber,String name,String account,String mobile,String merchantId)throws Exception;
+	
 	/**
 	 * @Title: simpleCheck
 	 * @Description: TODO(简项认证)

@@ -148,6 +148,81 @@ public class SfxxrzController {
 	}
 	
 	/**
+	 * @Title: bankCardCheckThree
+	 * @Description: TODO(合一道，个人银行账户核查(3项)接口)
+	 * @date 2016年8月17日 下午3:15:08 
+	 * @author yang-lj
+	 * @param request
+	 * @param response
+	 * @param idNumber
+	 * @param name
+	 * @param merchantId
+	 * @param sign
+	 */
+	@RequestMapping("/bankCardCheckThree")
+	public void bankCardCheckThree(HttpServletRequest request,HttpServletResponse response,
+			String idNumber,String name,String account,String merchantId,String sign){
+		JSONObject resJson=new JSONObject();
+		try{
+			request.setCharacterEncoding("utf-8");
+			log.info("--------bankCardCheckThree--------req:--params--idNumber:"+idNumber+" name:"+name
+					+" account:"+account+" merchantId:"+merchantId+" sign:"+sign);
+			if(!verifySign(merchantId, sign,idNumber,name,account)){
+				resJson.put("responseCode", Constants.RES_ERROR_SIGN);
+				resJson.put("responseText","签名校验失败");
+			}
+			resJson=sfxxrzService.bankCardCheckThree(idNumber, name,account,merchantId);
+			log.info("--------bankCardCheckThree--------res:"+resJson);
+		}catch(Exception e){
+			if (!resJson.containsKey("responseCode")) {
+				resJson.put("responseCode", Constants.RES_ERROR_UNKNOWN);
+				resJson.put("responseText","未知异常");
+			}
+		}finally{
+			responseProc(response, resJson);
+		}
+	}
+	
+	
+	/**
+	 * @Title: bankCardCheckFourParts
+	 * @Description: TODO(合一道，个人银行账户核查(4项)接口)
+	 * @date 2016年8月17日 下午3:14:03 
+	 * @author yang-lj
+	 * @param request
+	 * @param response
+	 * @param idNumber 身份证号码
+	 * @param name	姓名
+	 * @param account	银行账号
+	 * @param merchantId 商户ID
+	 * @param sign	签名
+	 */
+	@RequestMapping("/bankCardCheckFourParts")
+	public void bankCardCheckFourParts(HttpServletRequest request,HttpServletResponse response,
+			String idNumber,String name,String account,String mobile,String merchantId,String sign){
+		JSONObject resJson=new JSONObject();
+		try{
+			request.setCharacterEncoding("utf-8");
+			log.info("--------bankCardCheckFourParts--------req:--params--idNumber:"+idNumber+" name:"+name
+					+" account:"+account+" mobile:"+mobile+" merchantId:"+merchantId+" sign:"+sign);
+			if(!verifySign(merchantId, sign,idNumber,name,account,mobile)){
+				resJson.put("responseCode", Constants.RES_ERROR_SIGN);
+				resJson.put("responseText","签名校验失败");
+			}
+			resJson=sfxxrzService.bankCardCheckFourParts(idNumber, name,account,mobile, merchantId);
+			log.info("--------bankCardCheckFourParts--------res:"+resJson);
+		}catch(Exception e){
+			if (!resJson.containsKey("responseCode")) {
+				resJson.put("responseCode", Constants.RES_ERROR_UNKNOWN);
+				resJson.put("responseText","未知异常");
+			}
+		}finally{
+			responseProc(response, resJson);
+		}
+	}
+	
+	
+	/**
 	 * @Title: simpleCheck
 	 * @Description: TODO(简项认证)
 	 * @date 2016年4月20日 下午5:28:08 
@@ -501,4 +576,26 @@ public class SfxxrzController {
 		return Arrays.areEqual(ToolUtil.hex2byte(sign), signByte);
 	}
 	
+	/**
+	 * @Title: verifySign
+	 * @Description: TODO(验签名)
+	 * @date 2016年8月17日 下午3:50:43 
+	 * @author yang-lj
+	 * @param merchantId
+	 * @param sign
+	 * @param params
+	 * @return
+	 * @throws Exception
+	 * @throws UnsupportedEncodingException
+	 */
+	private boolean verifySign(String merchantId, String sign,String... params) throws Exception, UnsupportedEncodingException {
+		String key=ConfigInfo.merchantKeyMap.get(merchantId);
+		String signStr="";
+		for (String param : params)  
+		signStr+=param;
+		signStr+=merchantId;
+		log.info("----verifySign------signStr:"+signStr);
+		byte[] signByte=CipherUtil.encodeHmac(signStr.getBytes("UTF-8"), ToolUtil.hex2byte(key));
+		return Arrays.areEqual(ToolUtil.hex2byte(sign), signByte);
+	}
 }

@@ -12,8 +12,8 @@ public class Constants {
 	/**
 	 * 	合一道
 	 */
-	public static final String RCOMP_ORDERID="";	//商户自定义KEY
-	public static final String RCOMP_ID="40664";	//商户id
+	public static final String RCOMP_ORDERID="";						//商户自定义KEY
+	public static final String RCOMP_ID="40664";						//商户id
 	public static final String RCOMP_KEY="CYQgEhbUKloEIarJDW4o";		//商户密钥
 	/**
 	 * 合一道API
@@ -21,6 +21,8 @@ public class Constants {
 	public static final String RAPI_ID_CHECK="50201";					//身份信息查核合一道Api id
 	public static final String RAPI_ID_PHOTO_QUERY="50202";				//个人身份证照片信息查询合一道Api id
 	public static final String RAPI_ID_PHOTO_COMPARE="50206";			//个人身份证核查及证照比对合一道Api id
+	public static final String RAPI_ID_BANKCARD_CHECK4="50307";			//个人银行账户核查(4项)接口合一道Api id
+	public static final String RAPI_ID_BANKCARD_CHECK3="50311";			//个人银行账户核查(3项)接口合一道Api id
 	
 	
 	/**
@@ -76,6 +78,8 @@ public class Constants {
 	public static final String RZ_TYPE_IDCARD="idCardCheck";	//认证类型-个人身份核查
 	public static final String RZ_TYPE_PHOTOINFOQUERY="idCardPhotoInfoQuery";	//认证类型-个人身份证照片信息查询
 	public static final String RZ_TYPE_PHOTOCOMPARE="photoCompare";		//认证类型-个人身份证核查及证照比对
+	public static final String RZ_TYPE_BANKCARDCHECKTHREE="bankCardCheckThree";		//认证类型-个人银行账户核查(3项)接口
+	public static final String RZ_TYPE_BANKCARDCHECKFOURPARTS="bankCardCheckFourParts";		//认证类型-个人银行账户核查(4项)接口
 
 	/**
 	 * 认证扣费单笔金额

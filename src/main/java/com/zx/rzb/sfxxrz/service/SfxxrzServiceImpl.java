@@ -150,6 +150,67 @@ public class SfxxrzServiceImpl implements SfxxrzService {
 		}
 		return resJson;
 	}
+	
+	
+	/**
+	 * @Title: bankCardCheckFourParts
+	 * @Description: TODO(合一道，个人银行账户核查(3项)接口)
+	 * @date 2016年8月17日 下午4:09:01 
+	 * @author yang-lj
+	 * @param idNumber
+	 * @param name
+	 * @param account
+	 * @param merchantId
+	 * @return
+	 * @throws Exception
+	 */
+	@Transactional
+	public JSONObject bankCardCheckThree(String idNumber, String name,String account, String merchantId) throws Exception {
+		JSONObject resJson = new JSONObject();
+		Boolean flag = false;// 是否触发了余额告警
+		String rzType = "bankCardCheckThree";
+		try {
+			verification(resJson, merchantId, flag,rzType);// 业务验证
+			String json = rzbpfCall.bankCardCheckThree(idNumber, name,account);
+			resJson = JSONObject.fromObject(json);
+			hydResultProc(idNumber, name, merchantId, rzType, flag, resJson);//结果处理
+		} catch (Exception e) {
+			log.error("个人银行账户核查3项出错 err:" + e.getMessage(), e);
+			throw e;
+		}
+		return resJson;
+	}
+
+	/**
+	 * @Title: bankCardCheckFourParts
+	 * @Description: TODO(合一道，个人银行账户核查(4项)接口)
+	 * @date 2016年8月17日 下午4:09:01 
+	 * @author yang-lj
+	 * @param idNumber
+	 * @param name
+	 * @param account
+	 * @param merchantId
+	 * @return
+	 * @throws Exception
+	 */
+	@Transactional
+	public JSONObject bankCardCheckFourParts(String idNumber, String name,String account,String mobile, String merchantId) throws Exception {
+		JSONObject resJson = new JSONObject();
+		Boolean flag = false;// 是否触发了余额告警
+		String rzType = "bankCardCheckFourParts";
+		try {
+			verification(resJson, merchantId, flag,rzType);// 业务验证
+			String json = rzbpfCall.bankCardCheckFourParts(idNumber, name,account,mobile);
+			resJson = JSONObject.fromObject(json);
+			hydResultProc(idNumber, name, merchantId, rzType, flag, resJson);//结果处理
+			
+		} catch (Exception e) {
+			log.error("个人银行账户核查4项出错 err:" + e.getMessage(), e);
+			throw e;
+		}
+		return resJson;
+	}
+	
 
 	/**
 	 * @Title: simpleCheck
@@ -777,6 +838,10 @@ public class SfxxrzServiceImpl implements SfxxrzService {
 			return Float.parseFloat(ConfigInfo.channelFeeMap.get("idCardPhotoInfoQuery"));
 		} else if (rzType.equals(Constants.RZ_TYPE_PHOTOCOMPARE)) {
 			return Float.parseFloat(ConfigInfo.channelFeeMap.get("photoCompare"));
+		} else if (rzType.equals(Constants.RZ_TYPE_BANKCARDCHECKTHREE)) {
+			return Float.parseFloat(ConfigInfo.channelFeeMap.get("bankCardCheckThree"));
+		} else if (rzType.equals(Constants.RZ_TYPE_BANKCARDCHECKFOURPARTS)) {
+			return Float.parseFloat(ConfigInfo.channelFeeMap.get("bankCardCheckFourParts"));
 		} else {
 			throw new Exception("没有该认证类型的费用配置");
 		}

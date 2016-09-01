@@ -32,10 +32,21 @@ public class SfxxrzControllerTest {
 	 */
 //	private static String urlPrefix="https://zhx.chanmaobank.com";
 	private static String urlPrefix="http://localhost:8080";
+	
 //	private static String idNumber = "430281198209257217";	//身份证号
 //	private static String name = "杨羚均";					//姓名
-	private static String idNumber = "370704198602152428";	//身份证号
-	private static String name = "鲁婷婷";					//姓名
+	
+//	private static String idNumber = "370704198602152428";	//身份证号
+//	private static String name = "鲁婷婷";					//姓名
+	
+	/**
+	 * 银行账号查询
+	 */
+	private static String idNumber = "410928199101093940";	//身份证号
+	private static String name = "孙淑静";					//姓名
+	private static String account = "6228486523000002";		//银行账号
+	private static String mobile = "13915592414";			//手机号码
+	
 //	private static String merchantId="008310107420024";		//商户号
 //	private static String key ="25E562C52DF0D352D920FA90482F3CB4F921668BE2B8D8AB8A0F44F123BABA77";//密钥
 	
@@ -133,6 +144,63 @@ public class SfxxrzControllerTest {
 		System.out.println(json);
 	}
 	
+	
+	/**
+	 * @Title: testbankCardCheckThree
+	 * @Description: TODO(银行账号核查(3项))
+	 * @date 2016年8月18日 上午9:27:00 
+	 * @author yang-lj
+	 * @throws UnsupportedEncodingException
+	 */
+	@Test
+	public void testbankCardCheckThree() throws UnsupportedEncodingException {
+		String signStr=idNumber+name+account+merchantId;
+		String url="";
+		try {
+			byte[] signByte=CipherUtil.encodeHmac(signStr.getBytes("UTF-8"), ToolUtil.hex2byte(key));
+			String sign=ToolUtil.bytes2hex(signByte);
+			url = urlPrefix+"/rzb/bankCardCheckThree.action?idNumber=" + idNumber
+					+ "&name=" + URLEncoder.encode(name, "UTF-8") 
+					+ "&account="+ URLEncoder.encode(account, "UTF-8")
+					+ "&merchantId=" + merchantId 
+					+ "&sign=" + sign;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return;
+		}
+		System.out.println(url);
+		String json = getHtml(url);
+		System.out.println(json);
+	}
+	
+	/**
+	 * @Title: testbankCardCheckFourParts
+	 * @Description: TODO(个人银行账户核查(4项)接口)
+	 * @date 2016年8月18日 上午10:11:10 
+	 * @author yang-lj
+	 * @throws UnsupportedEncodingException
+	 */
+	@Test
+	public void testbankCardCheckFourParts() throws UnsupportedEncodingException {
+		String signStr=idNumber+name+account+mobile+merchantId;
+		String url="";
+		try {
+			byte[] signByte=CipherUtil.encodeHmac(signStr.getBytes("UTF-8"), ToolUtil.hex2byte(key));
+			String sign=ToolUtil.bytes2hex(signByte);
+			url = urlPrefix+"/rzb/bankCardCheckFourParts.action?idNumber=" + idNumber
+					+ "&name=" + URLEncoder.encode(name, "UTF-8") 
+					+ "&account="+ account
+					+ "&mobile=" + mobile 
+					+ "&merchantId=" + merchantId 
+					+ "&sign=" + sign;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return;
+		}
+		System.out.println(url);
+		String json = getHtml(url);
+		System.out.println(json);
+	}
 	
 	
 	/**

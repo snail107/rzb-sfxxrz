@@ -45,6 +45,30 @@ public interface RzbpfCall {
 	 * @return
 	 */
 	public String idCardPhotoCompare(String idNumber,String name,String photo);
+
+	/**
+	 * @Title: bankCardCheckFourParts
+	 * @Description: TODO(合一道，个人银行账户核查(3项)接口)
+	 * @date 2016年8月17日 下午4:21:42 
+	 * @author yang-lj
+	 * @param idNumber
+	 * @param name
+	 * @param account
+	 * @return
+	 */
+	public String bankCardCheckThree(String idNumber,String name,String account);
+	
+	/**
+	 * @Title: bankCardCheckFourParts
+	 * @Description: TODO(合一道，个人银行账户核查(4项)接口)
+	 * @date 2016年8月17日 下午4:21:42 
+	 * @author yang-lj
+	 * @param idNumber
+	 * @param name
+	 * @param account
+	 * @return
+	 */
+	public String bankCardCheckFourParts(String idNumber,String name,String account,String mobile);
 	
 	/**
 	 * @Title: exactCheck

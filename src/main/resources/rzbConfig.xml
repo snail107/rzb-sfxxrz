@@ -28,6 +28,8 @@
 		<config id="idCardCheck" value="0.50"	/>
 		<config id="idCardPhotoInfoQuery" value="1.80" />
 		<config id="photoCompare" value="2.80" />
+		<config id="bankCardCheckThree" value="0.80" />
+		<config id="bankCardCheckFourParts" value="0.80" />
 	</platform>
 	
 	

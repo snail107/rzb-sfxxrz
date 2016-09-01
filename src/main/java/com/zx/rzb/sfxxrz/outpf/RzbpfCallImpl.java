@@ -120,6 +120,75 @@ public class RzbpfCallImpl implements RzbpfCall {
 		return result;
 	}
 	
+	
+	/**
+	 * @Title: bankCardCheckFourParts
+	 * @Description: TODO(合一道，个人银行账户核查(3项)接口)
+	 * @date 2016年8月17日 下午4:21:42 
+	 * @author yang-lj
+	 * @param idNumber
+	 * @param name
+	 * @param account
+	 * @return
+	 */
+	public String bankCardCheckThree(String idNumber,String name,String account){
+		String result="";
+		try {
+			String prarm=Constants.RCOMP_ID+"|"+Constants.RAPI_ID_BANKCARD_CHECK3+"|"+name
+					+"|"+idNumber+"|"+account+"|"+ Constants.RCOMP_ORDERID+"|"+ Constants.RCOMP_KEY;
+			log.info("---------------prarm:"+prarm);
+			String sign=CipherUtil.md5(prarm).toLowerCase();//合一道接口MD5结果要求 小写
+			String url = "https://"+Constants.HYD_URI+"/api/personal/bankCardCheckThree?pname="+ URLEncoder.encode(name, "UTF-8")
+					+ "&paccount_no=" + account
+					+ "&pdocument_no=" + idNumber
+					+ "&rcomp_orderid=" + Constants.RCOMP_ORDERID
+					+ "&rcomp_id="+ Constants.RCOMP_ID
+					+ "&rapi_id="+ Constants.RAPI_ID_BANKCARD_CHECK3
+					+ "&sign=" + sign;
+			log.info("----bankCardCheckThree--hyd--req:"+url);
+			result= call(url);
+			log.info("----bankCardCheckThree--hyd--res:"+result);
+		} catch (UnsupportedEncodingException e) {
+			log.error("个人银行账户核查(3项)接口调用出错err:"+e.getMessage(),e);
+		}
+		return result;
+	}
+	
+	/**
+	 * @Title: bankCardCheckFourParts
+	 * @Description: TODO(合一道，个人银行账户核查(4项)接口)
+	 * @date 2016年8月17日 下午4:21:42 
+	 * @author yang-lj
+	 * @param idNumber
+	 * @param name
+	 * @param account
+	 * @return
+	 */
+	public String bankCardCheckFourParts(String idNumber,String name,String account,String mobile){
+		String result="";
+		try {
+			String prarm=Constants.RCOMP_ID+"|"+Constants.RAPI_ID_BANKCARD_CHECK4+"|" +name
+					+"|"+idNumber+"|"+account+"|"+mobile+"|"+ Constants.RCOMP_ORDERID+"|"+ Constants.RCOMP_KEY;
+			log.info("---------------prarm:"+prarm);
+			String sign=CipherUtil.md5(prarm).toLowerCase();//合一道接口MD5结果要求 小写
+			String url = "https://"+Constants.HYD_URI+"/api/personal/bankCardCheckFourParts?pname="+ URLEncoder.encode(name, "UTF-8")
+					+ "&pdocument_no=" + idNumber
+					+ "&paccount_no=" + account
+					+ "&pmobile=" + mobile
+					+ "&rcomp_orderid=" + Constants.RCOMP_ORDERID
+					+ "&rcomp_id="+ Constants.RCOMP_ID
+					+ "&rapi_id="+ Constants.RAPI_ID_BANKCARD_CHECK4
+					+ "&sign=" + sign;
+			log.info("----bankCardCheckFourParts--hyd--req:"+url);
+			result= call(url);
+			log.info("----bankCardCheckFourParts--hyd--res:"+result);
+		} catch (UnsupportedEncodingException e) {
+			log.error("个人银行账户核查(4项)接口调用出错err:"+e.getMessage(),e);
+		}
+		return result;
+	}
+	
+	
 	/**
 	 * @Title: call
 	 * @Description: TODO(认证宝接口调用-简项认证)
