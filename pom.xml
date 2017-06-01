@@ -240,4 +240,8 @@
 			<version>2.2.2</version>
 		</dependency>
 	</dependencies>
+	 <scm>
+		<developerConnection>scm:git:https://github.com/snail107/rzb-sfxxrz.git</developerConnection>
+		<tag>HEAD</tag>              
+	 </scm>  	
 </project>
