@@ -27,6 +27,19 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/10641/.m2/repository/org/bouncycastle/bcprov-jdk16/1.40/bcprov-jdk16-1.40.jar" sourcepath="C:/Users/10641/.m2/repository/org/bouncycastle/bcprov-jdk16/1.40/bcprov-jdk16-1.40-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.bouncycastle"/>
+			<attribute name="maven.artifactId" value="bcprov-jdk16"/>
+			<attribute name="maven.version" value="1.40"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
